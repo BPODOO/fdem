@@ -1,0 +1,7 @@
+<!-- <templates xml:space="preserve">
+
+    <t t-name="monBouton.ButtonValue" owl="1">
+        <button name="valueTo" class="btn-primary" type="object" string="Call Method"/>
+    </t>
+
+</templates> -->

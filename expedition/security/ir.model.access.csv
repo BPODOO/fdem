@@ -1,2 +1,2 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_expedition_expedition,expedition,model_expedition,base.group_user,1,1,1,1
+access_expedition_expedition,expedition,model_stock_picking,base.group_user,1,1,1,1
