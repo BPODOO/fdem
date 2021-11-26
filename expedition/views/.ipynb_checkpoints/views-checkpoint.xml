@@ -1,19 +1,6 @@
 <odoo>
   <data>
-    <!-- explicit list view definition -->
-<!--
-    <record model="ir.ui.view" id="expedition.list">
-      <field name="name">expedition list</field>
-      <field name="model">expedition.expedition</field>
-      <field name="arch" type="xml">
-        <tree>
-          <field name="name"/>
-          <field name="value"/>
-          <field name="value2"/>
-        </tree>
-      </field>
-    </record>
--->
+
     <record id="view_expedition_BP" model="ir.ui.view">
         <field name="name">stock.view.form.BP</field>
         <field name="model">stock.picking</field>
@@ -55,52 +42,11 @@
         <field name="arch" type="xml">
             <data>
                 <xpath expr="//field[@name='quantity_done']" position="after">
-                    <button name="getPoids" class="btn-primary fa fa-balance-scale" id="button_id" type="object" string=" Poids"/>
+                    <button name="getPoids" class="btn-primary fa fa-balance-scale oe_edit_only" id="button_id" type="object" string=" Peser"/>
                 </xpath>
             </data>
         </field>
     </record>
 
-    <!-- actions opening views on models -->
-<!--
-    <record model="ir.actions.act_window" id="expedition.action_window">
-      <field name="name">expedition window</field>
-      <field name="res_model">expedition.expedition</field>
-      <field name="view_mode">tree,form</field>
-    </record>
--->
-
-    <!-- server action to the one above -->
-<!--
-    <record model="ir.actions.server" id="expedition.action_server">
-      <field name="name">expedition server</field>
-      <field name="model_id" ref="model_expedition_expedition"/>
-      <field name="state">code</field>
-      <field name="code">
-        action = {
-          "type": "ir.actions.act_window",
-          "view_mode": "tree,form",
-          "res_model": model._name,
-        }
-      </field>
-    </record>
--->
-
-    <!-- Top menu item -->
-<!--
-    <menuitem name="expedition" id="expedition.menu_root"/>
--->
-    <!-- menu categories -->
-<!--
-    <menuitem name="Menu 1" id="expedition.menu_1" parent="expedition.menu_root"/>
-    <menuitem name="Menu 2" id="expedition.menu_2" parent="expedition.menu_root"/>
--->
-    <!-- actions -->
-<!--
-    <menuitem name="List" id="expedition.menu_1_list" parent="expedition.menu_1"
-              action="expedition.action_window"/>
-    <menuitem name="Server to list" id="expedition" parent="expedition.menu_2"
-              action="expedition.action_server"/>
--->
   </data>
 </odoo>
