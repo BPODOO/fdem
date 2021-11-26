@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
 
 from odoo import models, fields, api
+from odoo.exceptions import ValidationError
 import logging
 _logger = logging.getLogger(__name__)
 
 class Expedition(models.Model):
     _inherit = 'stock.picking'
 
-    valeur = fields.Char(string="Valeur : ",store=True)#compute="getValue"
+    valeur = fields.Char(string="Valeur : ",readonly="True",store=True)#compute="getValue"
     
 #     @api.model
 #     def getValue(self, data):
@@ -20,12 +21,11 @@ class Expedition(models.Model):
         #Affiche la valeur du champ
         _logger.info("Valeur :" + str(self.valeur))
 #         _logger.info(self.env['stock.move'].getLine())
-        _logger.info(self.env['stock.move'].getIdLine())
+#         _logger.info(self.env['stock.move'].getIdLine())
         for record in self.move_lines:
-            if(record.id == 50):
+            if(record.id == 1159):
                 record.quantity_done = self.valeur
-                
-    
+
     def getContext(self):
         self.leContext = dict(self.env.context)
     
@@ -43,12 +43,24 @@ class Expedition(models.Model):
 class StockMove(models.Model):
     _inherit = 'stock.move'
   
+    def getPoids(self):
+        #Affiche l'id du picking //Le BL actuel à traiter
+        _logger.info(self.picking_id.id)
+        #Récupère le BL
+        leBl = self.env['stock.picking'].search([('id','=',self.picking_id.id)])
+        #Affiche la valeur de la balance dans le BL
+        _logger.info(leBl.valeur)
+        if(leBl):
+            self.quantity_done = leBl.valeur
+        else:
+            raise ValidationError("Aucun Bon de Livraison détecté !")
+            
     
     def _quantity_done_set(self):
-        _logger.info("ID de la ligne : " + str(self.getIdLine()))
+#         _logger.info("ID de la ligne : " + str(self.getIdLine()))
         res = super(StockMove, self)._quantity_done_set()
         return res
     
     def getIdLine(self):
         return self.id
-    
+

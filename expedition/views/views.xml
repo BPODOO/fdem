@@ -29,7 +29,6 @@
 <!--                     <label for="valeur" style="font-weight: bold;"/> -->
                     <field name="valeur" widget="iot_realtime_value" options="{'ip_field': 'ip', 'identifier': 'identifier'}"/>
                     <button name="valueTo" class="btn-primary" id="button_id" type="object" string="Python call" />
-<!--                     <button name="valueJs" class="btn-primary my_class" id="button_js" type="object" string="JS call" /> -->
 <!--                         </div>
                     </group> -->
                     <field name="leContext"/>
@@ -39,6 +38,18 @@
         </field>
     </record>
     
+    <record id="view_expedition_button_BP" model="ir.ui.view">
+        <field name="name">stock.view.button.BP</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <data>
+                <xpath expr="//field[@name='quantity_done']" position="after">
+                    <button name="getPoids" class="btn-primary fa fa-balance-scale" id="button_id" type="object" string=" Poids"/>
+                </xpath>
+            </data>
+        </field>
+    </record>
 
     <!-- actions opening views on models -->
 <!--
