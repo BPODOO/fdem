@@ -31,8 +31,18 @@
                     <button name="valueTo" class="btn-primary" id="button_id" type="object" string="Python call" />
 <!--                         </div>
                     </group> -->
-                    <field name="leContext"/>
-                    <field name="lesInfos"/>
+<!--                     <field name="leContext"/> -->
+<!--                     <field name="lesInfos"/> -->
+                </xpath>
+                <xpath expr="//group" position="after">
+                    <group>
+                        <group name="group_balance" string="Balance">
+                            <div class="o_row">
+                                <label for="valeur" style="font-weight:bold; font-size: 16px;"/>
+                                <field name="valeur" widget="iot_realtime_value" style="font-size: 16px" options="{'ip_field': 'ip', 'identifier': 'identifier'}"/>
+                            </div>
+                        </group>
+                    </group>
                 </xpath>
             </data>
         </field>

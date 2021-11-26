@@ -8,23 +8,21 @@ _logger = logging.getLogger(__name__)
 class Expedition(models.Model):
     _inherit = 'stock.picking'
 
-    valeur = fields.Char(string="Valeur : ",readonly="True",store=True)#compute="getValue"
+    valeur = fields.Char(string="Valeur de la balance : ",store=True)# Mettre le champ en readonly="True" ?
     
-#     @api.model
-#     def getValue(self, data):
-#         return 0
     leContext = fields.Char(string="Le Context : ", compute="getContext")
     
     lesInfos = fields.Char(string="Infos : ", compute="getInfo")
         
     def valueTo(self):
         #Affiche la valeur du champ
-        _logger.info("Valeur :" + str(self.valeur))
+#         _logger.info("Valeur :" + str(self.valeur))
 #         _logger.info(self.env['stock.move'].getLine())
 #         _logger.info(self.env['stock.move'].getIdLine())
-        for record in self.move_lines:
-            if(record.id == 1159):
-                record.quantity_done = self.valeur
+#         for record in self.move_lines:
+#             if(record.id == 1159):
+#                 record.quantity_done = self.valeur
+        return True
 
     def getContext(self):
         self.leContext = dict(self.env.context)
@@ -54,13 +52,3 @@ class StockMove(models.Model):
             self.quantity_done = leBl.valeur
         else:
             raise ValidationError("Aucun Bon de Livraison détecté !")
-            
-    
-    def _quantity_done_set(self):
-#         _logger.info("ID de la ligne : " + str(self.getIdLine()))
-        res = super(StockMove, self)._quantity_done_set()
-        return res
-    
-    def getIdLine(self):
-        return self.id
-
