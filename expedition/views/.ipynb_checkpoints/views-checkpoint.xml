@@ -10,16 +10,16 @@
                 <xpath expr="//field[@name='origin']" position="after">
                     <field name="ip" invisible="1"/>
                     <field name="identifier" invisible="1"/>
-                    <field name="device_id" required="1" string="Matériel"/>
+                    <field name="device_id" required="0" string="Matériel"/>
 <!--                     <group name="groupValeur">
                         <div> -->
 <!--                     <label for="valeur" style="font-weight: bold;"/> -->
                     <field name="valeur" widget="iot_realtime_value" options="{'ip_field': 'ip', 'identifier': 'identifier'}"/>
-                    <button name="valueTo" class="btn-primary" id="button_id" type="object" string="Python call" />
+<!--                     <button name="valueTo" class="btn-primary" id="button_id" type="object" string="Python call" /> -->
 <!--                         </div>
                     </group> -->
 <!--                     <field name="leContext"/> -->
-<!--                     <field name="lesInfos"/> -->
+                    <field name="lesInfos"/>
                 </xpath>
                 <xpath expr="//group" position="after">
                     <group>
@@ -35,18 +35,20 @@
         </field>
     </record>
     
+
     <record id="view_expedition_button_BP" model="ir.ui.view">
-        <field name="name">stock.view.button.BP</field>
-        <field name="model">stock.picking</field>
-        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="name">stock.move.line.view.button.BP</field>
+        <field name="model">stock.move.line</field>
+        <field name="inherit_id" ref="stock.view_stock_move_line_detailed_operation_tree"/>
         <field name="arch" type="xml">
             <data>
-                <xpath expr="//field[@name='quantity_done']" position="after">
-                    <button name="getPoids" class="btn-primary fa fa-balance-scale oe_edit_only" id="button_id" type="object" string=" Peser"/>
+                <xpath expr="//field[@name='product_uom_id']" position="after">
+<!--                     <button name="getPoids" class="btn-primary fa fa-balance-scale oe_edit_only" id="button_id" type="object" string=" Peser"/> -->
+<!--                     <button name="printEtiquette" class="btn-primary" id="button_print" type="object" string="Print" /> -->
                 </xpath>
             </data>
         </field>
     </record>
-
+      
   </data>
 </odoo>

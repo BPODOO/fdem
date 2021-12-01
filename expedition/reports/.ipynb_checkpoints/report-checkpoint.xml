@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+<!--     <record
+            id="report_etiquette_view"
+            string="Étiquette Produit"
+            model="expedition"
+            report_type="qweb-pdf"
+            name="expedition.report_etiquette"
+            file="expedition.report_etiquette" /> -->
+    
+    <record id="report_etiquette_view" model="ir.actions.report">
+        <field name="name">Étiquette produit</field>
+        <field name="model">stock.picking</field>
+        <field name="report_type">qweb-text</field>
+        <field name="report_name">expedition.report_etiquette</field>
+        <field name="report_file">expedition.report_etiquette</field>
+<!--         <field name="binding_model_id" ref=""/> -->
+        <field name="binding_type">report</field>
+    </record>
+    
+</odoo>

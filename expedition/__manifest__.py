@@ -28,6 +28,8 @@
         'views/views.xml',
         'views/templates.xml',
         'views/templateWidget.xml',
+        'reports/report.xml',
+        'reports/report_label.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
