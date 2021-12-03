@@ -34,8 +34,9 @@
 ^CFA,30
 ^FO50,300^FD<t t-esc="article_name"/>^FS
 ^FO50,340^FD<t t-esc="poids"/> kg^FS
-^FO50,380^FD<t t-esc="prixKg"/>^FS
-^FO50,420^FDPrix :^FS
+^FO50,380^FD<t t-esc="prixKg"/>  <t t-esc="devise"/>/kg^FS
+^FO50,420^FDPrix : <t t-esc="prix"/> <t t-esc="devise"/>^FS
+^FO50,460^FDLot : <t t-esc="lot"/>^FS
 ^CFA,15
 ^FO600,300^GB150,150,3^FS
 ^FO638,340^FDPermit^FS
@@ -44,8 +45,9 @@
 
 ^FX Third section with bar code.
 ^BY5,2,270
-^FO100,550^BC^FD12345678^FS
-
+<t t-if="barcode">
+^FO100,550^BC^FD<t t-esc="barcode"/>^FS
+</t>
 ^XZ
         
     </template>

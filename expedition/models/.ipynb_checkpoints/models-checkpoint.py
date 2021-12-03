@@ -41,6 +41,7 @@ class Expedition(models.Model):
 #         return self.env.ref('expedition.report_etiquette_view').report_action(self, data=data)
     
     #Identifiant du matériel connecté
+    #Un outil par défaut devra être assigné
     device_id = fields.Many2one('iot.device',string='IoT Device',domain="[('type','=','scanner')]")
     ip = fields.Char(related='device_id.iot_id.ip')
     identifier = fields.Char(related='device_id.identifier')
@@ -53,17 +54,21 @@ class StockMoveLine(models.Model):
         _logger.info("IN PRINT stock move")
     
 #         _logger.info(leBl.id)
-#         _logger.info(self.product_id.list_price)
-        _logger.info(self.move_id.sale_line_id.price_unit)
-        prix = self.move_id.sale_line_id.price_unit
+#         _logger.info(self.move_id.sale_line_id.price_unit)
+        prixkg = self.move_id.sale_line_id.price_unit
         devise = self.product_id.currency_id.symbol
-        _logger.info(devise)
+        prix = float(leBl.valeur) * prixkg
+#         _logger.info(str(prix) + " €")
         data = {
             'id': self.id,
             'id_bl': leBl.id,
             'article_name' : self.product_id.name,
             'poids' : leBl.valeur,
-#             'prixKg' : self.product_id.list_price
+            'lot' : self.lot_id.name,
+            'barcode' : self.product_id.barcode,
+            'prixKg' : self.move_id.sale_line_id.price_unit,
+            'prix' : prix,
+            'devise' : devise
         }
         return self.env.ref('expedition.report_etiquette_view').report_action(self, data=data)
        
@@ -73,10 +78,10 @@ class StockMoveLine(models.Model):
         leBl = self.env['stock.picking'].search([('id','=',self.picking_id.id)])
         
         #Affiche l'id du picking //Le BL actuel à traiter
-        _logger.info(self.picking_id.id)
+        _logger.info("ID du BL : " + str(self.picking_id.id))
         
         #Affiche la valeur de la balance dans le BL
-        _logger.info(leBl.valeur)
+        _logger.info(leBl.valeur + " kg")
         #Retourne normalement toujours TRUE mais on sait jamais
         if(leBl):
             #Stockage de la valeur précédente en cas d'erreur de saisie ?
