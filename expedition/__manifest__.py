@@ -3,14 +3,13 @@
     'name': "expedition",
 
     'summary': """
-        Short (1 phrase/line) summary of the module's purpose, used as
-        subtitle on modules listing or apps.openerp.com""",
+       Permet la prise de poids sur le BL""",
 
     'description': """
         Long description of module's purpose
     """,
 
-    'author': "My Company",
+    'author': "BeProject",
     'website': "http://www.yourcompany.com",
 
     # Categories can be used to filter modules in modules listing
@@ -20,7 +19,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base','sale','sale_management','stock','quality_iot'],
+    'depends': ['base','sale','sale_management','stock','quality_iot','web_studio'],
 
     # always loaded
     'data': [
