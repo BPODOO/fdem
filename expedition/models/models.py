@@ -54,7 +54,10 @@ class StockMoveLine(models.Model):
     
 #         _logger.info(leBl.id)
 #         _logger.info(self.product_id.list_price)
-#         _logger.info("Calcul : " + str((float(self.product_id.list_price) / 1000) * float(leBl.valeur)))
+        _logger.info(self.move_id.sale_line_id.price_unit)
+        prix = self.move_id.sale_line_id.price_unit
+        devise = self.product_id.currency_id.symbol
+        _logger.info(devise)
         data = {
             'id': self.id,
             'id_bl': leBl.id,

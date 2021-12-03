@@ -34,7 +34,7 @@
 ^CFA,30
 ^FO50,300^FD<t t-esc="article_name"/>^FS
 ^FO50,340^FD<t t-esc="poids"/> kg^FS
-^FO50,380^FD<t t-esc="prixKg"/>39021^FS
+^FO50,380^FD<t t-esc="prixKg"/>^FS
 ^FO50,420^FDPrix :^FS
 ^CFA,15
 ^FO600,300^GB150,150,3^FS
