@@ -84,29 +84,29 @@ class StockPickings(models.Model):
             sml=record.move_line_ids_without_package
             treated_ids=[]
             for i in sol:
-                _logger.info(i.product_id.name)
+#                 _logger.info(i.product_id.name)
                 stock_lines=sml.filtered(lambda x: x.product_id==i.product_id and not x.product_packaging and x.id not in treated_ids).sorted(key=lambda x:x.id)
-                _logger.info(stock_lines)
+#                 _logger.info(stock_lines)
                 if len(stock_lines)>1:
                     _logger.info(1)
                     if sum(stock_lines.mapped('product_uom_qty')) == i.product_uom_qty - i.qty_delivered:
-                        _logger.info(1.1)
+#                         _logger.info(1.1)
                         stock_lines.product_packaging =i.product_packaging.id
                         treated_ids+=stock_lines.mapped('id')  
                     elif sum(stock_lines.mapped('product_uom_qty')) > i.product_uom_qty - i.qty_delivered:
-                        _logger.info(1.2)
+#                         _logger.info(1.2)
                         c=i.product_uom_qty - i.qty_delivered
-                        _logger.info(c)
+#                         _logger.info(c)
                         item=0
                         while c > 0:
-                            _logger.info(c)
-                            _logger.info(stock_lines[item].product_uom_qty)
+#                             _logger.info(c)
+#                             _logger.info(stock_lines[item].product_uom_qty)
                             stock_lines[item].product_packaging = i.product_packaging.id
                             treated_ids.append(stock_lines[item].id)
                             c+=-stock_lines[item].product_uom_qty
                             item+=1
                 elif len(stock_lines)==1:
-                    _logger.info(2)
+#                     _logger.info(2)
                     stock_lines.product_packaging =i.product_packaging.id
                     treated_ids.append(stock_lines.id)
                         
