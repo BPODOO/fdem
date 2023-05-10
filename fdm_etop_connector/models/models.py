@@ -8,10 +8,19 @@ _logger = logging.getLogger(__name__)
 import requests
 
 class StockMove(models.Model):
-    _inherit =  "stock.move"
+    _inherit =  "stock.move.line"
+    
+    bp_old_value_qty_done = fields.Float()
     
     def action_call_balance(self):
-        response = requests.get("https://random-data-api.com/api/v2/beers",params={})
+        response = requests.get("https://jsonplaceholder.typicode.com/todos/1",params={})
         json_response = response.json()
-        self.product_uom_qty = json_response['id']
-        return
+        self.bp_old_value_qty_done = self.qty_done
+        self.qty_done += json_response['id']
+
+    
+    def action_old_value(self):
+        self.qty_done = self.bp_old_value_qty_done
+        
+    def action_reset_line(self):
+        self.qty_done = 0.0
