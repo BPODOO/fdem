@@ -16,11 +16,11 @@ class StockMove(models.Model):
         response = requests.get("https://jsonplaceholder.typicode.com/todos/1",params={})
         json_response = response.json()
         self.bp_old_value_qty_done = self.qty_done
-        self.qty_done += json_response['id']
+        self.qty_done = json_response['id']
 
     
-    def action_old_value(self):
-        self.qty_done = self.bp_old_value_qty_done
+    # def action_old_value(self):
+    #     self.qty_done = self.bp_old_value_qty_done
         
     def action_reset_line(self):
         self.qty_done = 0.0

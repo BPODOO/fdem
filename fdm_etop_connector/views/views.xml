@@ -9,13 +9,13 @@
                     <field name="bp_old_value_qty_done" invisible="1"/>
                 </xpath>
                 <xpath expr="//tree//field[@name='product_uom_id']" position="after">
-                    <button name="action_reset_line" class="btn btn-primary btn-api" type="object" string="Reset"/>
+                    <button name="action_reset_line" class="btn btn-primary btn-api" type="object" string="Reset" icon="fa-undo"/>
                 </xpath>
-                <xpath expr="//tree//field[@name='product_uom_id']" position="after">
+                <!-- <xpath expr="//tree//field[@name='product_uom_id']" position="after">
                     <button name="action_old_value" class="btn btn-primary btn-api" type="object" string="Annuler"/>
-                </xpath>
+                </xpath> -->
                 <xpath expr="//tree//field[@name='product_uom_id']" position="after">
-                    <button name="action_call_balance" class="btn btn-primary btn-api" type="object" string="Confirmer"/>
+                    <button name="action_call_balance" class="btn btn-primary btn-api" type="object" string="Confirmer" icon="fa-check"/>
                 </xpath>
             </field>
         </record>
@@ -27,7 +27,7 @@
                 <xpath expr="//page[@name='detailed_operations_hidden']" position="inside">
                     <style>
                         .o_list_button { text-align:center }
-                        .btn-api { padding: 10px !important;margin-right: 10px !important; }
+                        .btn-api { padding: 6px !important;margin-right: 10px !important; }
                     
                     </style>
                 </xpath>
