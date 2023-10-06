@@ -13,7 +13,7 @@ class StockMove(models.Model):
     bp_old_value_qty_done = fields.Float()
     
     def action_call_balance(self):
-        response = requests.get("http://192.168.1.100:7878/site/etq_hst_cab?reverse=1&limit=1",params={})
+        response = requests.get("http://86.201.126.45:7878/site/etq_hst_cab?reverse=1&limit=1",params={})
         json_response = response.json()
         self.bp_old_value_qty_done = self.qty_done
         self.qty_done = json_response[0]['liquido']
