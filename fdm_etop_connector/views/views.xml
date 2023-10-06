@@ -1,0 +1,37 @@
+<odoo>
+  <data>
+        <record id="view_button_call_balance" model="ir.ui.view">
+            <field name="name">Bp bouton appel balance</field>
+            <field name="model">stock.move.line</field>
+            <field name="inherit_id" ref="stock.view_stock_move_line_detailed_operation_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//tree//field[@name='product_uom_id']" position="before">
+                    <field name="bp_old_value_qty_done" invisible="1"/>
+                </xpath>
+                <xpath expr="//tree//field[@name='product_uom_id']" position="after">
+                    <button name="action_reset_line" class="btn btn-primary btn-api" type="object" string="Reset" icon="fa-undo"/>
+                </xpath>
+                <!-- <xpath expr="//tree//field[@name='product_uom_id']" position="after">
+                    <button name="action_old_value" class="btn btn-primary btn-api" type="object" string="Annuler"/>
+                </xpath> -->
+                <xpath expr="//tree//field[@name='product_uom_id']" position="after">
+                    <button name="action_call_balance" class="btn btn-primary btn-api" type="object" string="Confirmer" icon="fa-check"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="view_button_call_balance_style" model="ir.ui.view">
+            <field name="name">Bp bouton appel balance style</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='detailed_operations_hidden']" position="inside">
+                    <style>
+                        .o_list_button { text-align:center }
+                        .btn-api { padding: 6px !important;margin-right: 10px !important; }
+                    
+                    </style>
+                </xpath>
+            </field>
+        </record>
+  </data>
+</odoo>
